@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 # import csv
 # import sqlite3
-import reader
+from reader import *
 
 
 def getProductDetails():
@@ -28,6 +28,25 @@ def getProductDetails():
                 print("Title detail: -")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------------------------------------------#
 # function call
 # getProductDetails()
 
