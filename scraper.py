@@ -5,17 +5,13 @@ import requests
 from bs4 import BeautifulSoup
 # import csv
 # import sqlite3
-from reader import *
+# from reader import *
 
 
-def getProductDetails():
-    #----------BEAUTIFUL SOUP----------#
-    # creating beautiful soup object
-    response = urlopen("https://www.newegg.com/p/pl?d=Voyager+Pro+Carry+Case")
-    html = response.read()
-    # print(html)
-    soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
+def get_product_details(custom_url, part_num):
     # finding item list section
+    html = custom_url
+    soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
     section = soup.find_all("div", class_="items-view")
     for item_container in section:
         item_info = item_container.find("div", class_="item-info")
@@ -23,9 +19,9 @@ def getProductDetails():
         # print(title_line)
         try:
             title = title_line.get_text()
-            print(title)
         except AttributeError:
-                print("Title detail: -")
+            title = "Title: -"
+    return title
 
 
 

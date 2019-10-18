@@ -1,20 +1,23 @@
 import csv
+from scraper import get_product_details
+from url_response import get_custom_url
 
 
-def readAndPassArgument():
+def read_csv():
     with open('ScrapperSheet2.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        # line_count = 0
+        man_part_nums = []
         for row in csv_reader:
-            print(f'{row[1]}')
-            
-            # line_count += 1
-            # print(f'Processed {line_count} lines.')
+            man_part_nums.append(row[1])
+        set_part_nums = set(man_part_nums)
+        for part_num in set_part_nums:
+            # get_product_details(part_num)
+            product_url = get_custom_url(part_num)
+            product_title = get_product_details(product_url, part_num)
+            print(product_title)
 
-
-# function call
-readAndPassArgument()
-
+# # function call
+read_csv()
 
 
 
