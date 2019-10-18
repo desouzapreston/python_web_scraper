@@ -13,6 +13,7 @@ def read_csv():
         for part_num in set_part_nums:
             # get_product_details(part_num)
             product_url = get_custom_url(part_num)
+            # print(product_url)
             product_title = get_product_details(product_url, part_num)
             print(product_title)
 

@@ -3,6 +3,7 @@ from urllib import request, response, error, parse
 from urllib.request import urlopen
 import requests
 from bs4 import BeautifulSoup
+import time #local variable 'title' referenced before assignment
 # import csv
 # import sqlite3
 # from reader import *
@@ -10,7 +11,8 @@ from bs4 import BeautifulSoup
 
 def get_product_details(custom_url, part_num):
     # finding item list section
-    html = custom_url
+    response = urlopen(custom_url)
+    html = response.read()
     soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
     section = soup.find_all("div", class_="items-view")
     for item_container in section:
@@ -21,6 +23,7 @@ def get_product_details(custom_url, part_num):
             title = title_line.get_text()
         except AttributeError:
             title = "Title: -"
+    time.sleep(.1)
     return title
 
 
