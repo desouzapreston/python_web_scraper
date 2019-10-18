@@ -1,18 +1,15 @@
 from bs4 import BeautifulSoup
-from urllib.parse import urlencode
+from urllib.parse import urlencode, quote, unquote, urlparse
 from urllib.request import urlretrieve
 from urllib.request import urlopen
 
 
 def get_custom_url(part_num):
-    dict_url = {'p': part_num}
-    pstr = urlencode(dict_url)
-    custom_str = urlretrieve("https://www.newegg.com/p/pl?" + pstr)
-    print(custom_str)
-    return custom_str
-    
+    url = "https://www.newegg.com/p/pl?d=%s" % (part_num)
+    print(url)
+
 #function call
-get_custom_url("006515-OM2-PAK")
+get_custom_url("81293-01")
     
     
     
@@ -24,3 +21,12 @@ get_custom_url("006515-OM2-PAK")
     # html = response.read()
     # # print(html)
     # soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
+    
+    # pstr = quote(part_num)
+    # # dict_url = {'p': part_num}
+    # # pstr = urlencode(dict_url)
+    # custom_str = urlretrieve("https://www.newegg.com/p/pl?" + pstr)
+    # parsed_custom_str = urlparse(custom_str)
+    # print(unquote(parsed_custom_str))
+    # return custom_str
+    
