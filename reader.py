@@ -19,6 +19,7 @@ def read_csv():
             print(product_url)
             product_info = get_product_details(product_url, part_num)
             print(product_info)
+            print("\n")
             
 
 # # function call

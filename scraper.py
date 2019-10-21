@@ -16,13 +16,13 @@ def get_product_details(custom_url, part_num):
     html = response.read()
     soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
     if not (soup.find_all("div", class_="result-message")):
-        product_info = []
+        product_info = {}
         section = soup.find_all("div", class_="items-view")
         for item_container in section:
             #Title:
             item_info = item_container.find("div", class_="item-info")
             title = getattr(item_info.find("a", class_="item-title"), "string", "none")
-            product_info.append(title)
+            product_info["Title: "] = title
 
             #Price:
             item_action = item_info.find("div", class_="item-action")
@@ -32,9 +32,17 @@ def get_product_details(custom_url, part_num):
             price_dollar = price_current.find("strong").get_text()
             price_cent = price_current.find("sup").get_text()
             price = price_dollar + price_cent
-            product_info.append(price)
+            product_info["Price: "] = price
+
             # price_current_label = getattr(price_current.find("span", class_="price-current-label"), "string", "none")
             # price_current_label = price_current.find("span", "price-current-label").text
+
+            #Image:
+            item_image = item_container.find("a", class_="item-img")
+            image_full = item_image.find("img")
+            image = image_full['src']
+            product_info["Img: "] = image
+
 
         time.sleep(.1)
         return product_info
