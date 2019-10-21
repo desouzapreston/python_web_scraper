@@ -16,19 +16,37 @@ def get_product_details(custom_url, part_num):
     html = response.read()
     soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
     if not (soup.find_all("div", class_="result-message")):
+        product_info = []
         section = soup.find_all("div", class_="items-view")
         for item_container in section:
+            #Title:
             item_info = item_container.find("div", class_="item-info")
-            try:
-                title = getattr(item_info.find("a", class_="item-title"), "string", "none")
-            except AttributeError:
-                title = "Title: -"
-            except UnboundLocalError:
-                title = "Title: -"
+            title = getattr(item_info.find("a", class_="item-title"), "string", "none")
+            product_info.append(title)
+
+            #Price:
+            item_action = item_info.find("div", class_="item-action")
+            price_section = item_action.find("ul", class_="price")
+            price_current = price_section.find("li", class_="price-current")
+            # print(price_current)
+            price_dollar = price_current.find("strong").get_text()
+            price_cent = price_current.find("sup").get_text()
+            price = price_dollar + price_cent
+            product_info.append(price)
+            # price_current_label = getattr(price_current.find("span", class_="price-current-label"), "string", "none")
+            # price_current_label = price_current.find("span", "price-current-label").text
+
         time.sleep(.1)
-        return title
+        return product_info
 
 #----------------------------------------------------------------------------------------------------------------------------------------#
+# try:
+# except AttributeError:            
+# title = "Title: -"
+# except UnboundLocalError:
+#     title = "Title: -"
+# try:
+
 # def getTitle(soup):
 #     section = soup.find_all("div", class_="items-view")
 #     for item_container in section:
