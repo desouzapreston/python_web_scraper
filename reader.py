@@ -12,6 +12,7 @@ def read_csv():
         set_part_nums = set(man_part_nums)
         i_s_part_nums = iter(set_part_nums)
         # next(i_s_part_nums)
+        print("\n")
         for part_num in i_s_part_nums:
             # get_product_details(part_num)
             product_url = get_custom_url(part_num)
@@ -19,7 +20,9 @@ def read_csv():
             product_info = get_product_details(product_url, part_num)
             if (product_info == "None"):
                 print("No Products Found")
-            else: print(product_info)
+            else: 
+                print(product_info)
+            
 
 # # function call
 read_csv()

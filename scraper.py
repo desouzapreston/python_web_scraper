@@ -19,10 +19,8 @@ def get_product_details(custom_url, part_num):
         section = soup.find_all("div", class_="items-view")
         for item_container in section:
             item_info = item_container.find("div", class_="item-info")
-            title_line = item_info.find("a", class_="item-title")
-            # print(title_line)
             try:
-                title = title_line.get_text()
+                title = getattr(item_info.find("a", class_="item-title"), "string", "none")
             except AttributeError:
                 title = "Title: -"
             except UnboundLocalError:
