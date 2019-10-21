@@ -10,12 +10,14 @@ def read_csv():
         for row in csv_reader:
             man_part_nums.append(row[1])
         set_part_nums = set(man_part_nums)
-        for part_num in set_part_nums:
+        i_s_part_nums = iter(set_part_nums)
+        # next(i_s_part_nums)
+        for part_num in i_s_part_nums:
             # get_product_details(part_num)
             product_url = get_custom_url(part_num)
-            # print(product_url)
-            product_title = get_product_details(product_url, part_num)
-            print(product_title)
+            print(product_url)
+            product_info = get_product_details(product_url, part_num)
+            print(product_info)
 
 # # function call
 read_csv()

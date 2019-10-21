@@ -3,7 +3,7 @@ from urllib import request, response, error, parse
 from urllib.request import urlopen
 import requests
 from bs4 import BeautifulSoup
-import time #local variable 'title' referenced before assignment
+import time  # local variable 'title' referenced before assignment
 # import csv
 # import sqlite3
 # from reader import *
@@ -14,6 +14,11 @@ def get_product_details(custom_url, part_num):
     response = urlopen(custom_url)
     html = response.read()
     soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
+    product_info_list = []
+    product_info_list.append(getTitle(soup))
+
+
+def getTitle(soup):
     section = soup.find_all("div", class_="items-view")
     for item_container in section:
         item_info = item_container.find("div", class_="item-info")
@@ -23,26 +28,10 @@ def get_product_details(custom_url, part_num):
             title = title_line.get_text()
         except AttributeError:
             title = "Title: -"
-    time.sleep(.1)
-    return title
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        except UnboundLocalError:
+            print("No Product Data Found")
+        time.sleep(.1)
+        return title
 
 
 #----------------------------------------------------------------------------------------------------------------------------------------#
