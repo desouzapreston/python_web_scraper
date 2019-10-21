@@ -17,7 +17,9 @@ def read_csv():
             product_url = get_custom_url(part_num)
             print(product_url)
             product_info = get_product_details(product_url, part_num)
-            print(product_info)
+            if (product_info == "None"):
+                print("No Products Found")
+            else: print(product_info)
 
 # # function call
 read_csv()

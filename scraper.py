@@ -11,31 +11,43 @@ import time  # local variable 'title' referenced before assignment
 
 def get_product_details(custom_url, part_num):
     # finding item list section
+    html = custom_url
     response = urlopen(custom_url)
     html = response.read()
     soup = BeautifulSoup(html.decode("utf-8"), "html.parser")
-    product_info_list = []
-    product_info_list.append(getTitle(soup))
-
-
-def getTitle(soup):
-    section = soup.find_all("div", class_="items-view")
-    for item_container in section:
-        item_info = item_container.find("div", class_="item-info")
-        title_line = item_info.find("a", class_="item-title")
-        # print(title_line)
-        try:
-            title = title_line.get_text()
-        except AttributeError:
-            title = "Title: -"
-        except UnboundLocalError:
-            print("No Product Data Found")
+    if not (soup.find_all("div", class_="result-message")):
+        section = soup.find_all("div", class_="items-view")
+        for item_container in section:
+            item_info = item_container.find("div", class_="item-info")
+            title_line = item_info.find("a", class_="item-title")
+            # print(title_line)
+            try:
+                title = title_line.get_text()
+            except AttributeError:
+                title = "Title: -"
+            except UnboundLocalError:
+                title = "Title: -"
         time.sleep(.1)
         return title
 
-
 #----------------------------------------------------------------------------------------------------------------------------------------#
+# def getTitle(soup):
+#     section = soup.find_all("div", class_="items-view")
+#     for item_container in section:
+#         item_info = item_container.find("div", class_="item-info")
+#         title_line = item_info.find("a", class_="item-title")
+#         # print(title_line)
+#         try:
+#             time.sleep(.1)
+#             title = title_line.get_text()
+#         except AttributeError:
+#             title = "Title: -"
+#         except UnboundLocalError:
+#             print("No Product Data Found")
+#     time.sleep(.1)
+#     return title
 # function call
+
 # getProductDetails()
 
 
