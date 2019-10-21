@@ -1,15 +1,10 @@
-# from requests.models import PreparedRequest
 from urllib import request, response, error, parse
 from urllib.request import urlopen
 import requests
 from bs4 import BeautifulSoup
-import time  # local variable 'title' referenced before assignment
-# import csv
-# import sqlite3
-# from reader import *
 
 
-def get_product_details(custom_url, part_num):
+def get_product_details(custom_url, part_num, cur, conn):
     # finding item list section
     html = custom_url
     response = urlopen(custom_url)
@@ -23,28 +18,22 @@ def get_product_details(custom_url, part_num):
             item_info = item_container.find("div", class_="item-info")
             title = getattr(item_info.find("a", class_="item-title"), "string", "none")
             product_info["Title: "] = title
-
             #Price:
             item_action = item_info.find("div", class_="item-action")
             price_section = item_action.find("ul", class_="price")
             price_current = price_section.find("li", class_="price-current")
-            # print(price_current)
             price_dollar = price_current.find("strong").get_text()
             price_cent = price_current.find("sup").get_text()
             price = price_dollar + price_cent
             product_info["Price: "] = price
-
-            # price_current_label = getattr(price_current.find("span", class_="price-current-label"), "string", "none")
-            # price_current_label = price_current.find("span", "price-current-label").text
-
             #Image:
             item_image = item_container.find("a", class_="item-img")
             image_full = item_image.find("img")
             image = image_full['src']
             product_info["Img: "] = image
-
-
-        time.sleep(.1)
+            cur.execute("INSERT OR IGNORE INTO scrapings (title, price, image) VALUES (?, ?, ?)",
+            (title, price, image))
+            conn.commit()
         return product_info
 
 #----------------------------------------------------------------------------------------------------------------------------------------#
