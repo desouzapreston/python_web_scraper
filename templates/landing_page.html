@@ -1,0 +1,28 @@
+<linkrel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+<html>
+    <head>
+    </head>
+    <body>
+        <form action="landing_page.php" method="get">
+            <h1>Let's do some scraping >:)</h1>
+            <h3>Product Number: </h3>
+            <input type="text" name="product_number">
+            <input type="submit">
+
+            <h3>Number of comparable search results: </h3>
+            <h5>Hint: The smaller the number, the faster the search</h5>
+            <input type="text" name="results_amount">
+            <input type="submit">
+
+            <h3>Min Price: </h3>
+            <input type="text" name="min_price">
+            <input type="submit">
+
+            <h3>Max Price: </h3>
+            <input type="text" name="max_price">
+            <input type="submit">
+
+        </form>
+
+    </body>
+</html>
