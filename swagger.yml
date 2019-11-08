@@ -8,20 +8,20 @@ consumes:
 produces:
   - "application/json"
 
-basePath: "/python_web_scraper"
+basePath: "/api"
 
 # Paths supported by the server application
 paths:
-  /people:
+  /products:
     get:
-      operationId: "people.read"
+      operationId: "products.read"
       tags:
-        - "People"
-      summary: "The people data structure supported by the server application"
-      description: "Read the list of people"
+        - "Products"
+      summary: "The products data structure supported by the server application"
+      description: "Read the list of products"
       responses:
         200:
-          description: "Successful read people list operation"
+          description: "Successful read products list operation"
           schema:
             type: "array"
             items:

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def get_timestamp():
     return datetime.now().strftime(("%Y-%m-%d %H:%M:%S"))
 
@@ -20,7 +22,7 @@ PRODUCTS = {
     }
 }
 
-# Create a handler for our read (GET) people
+# Create a handler for our read (GET) products
 def read():
     """
     This function responds to a request for /api/products
@@ -28,5 +30,5 @@ def read():
 
     :return:        sorted list of products
     """
-    # Create the list of people from our data
+    # Create the list of products from our data
     return [PRODUCTS[key] for key in sorted(PRODUCTS.keys())]
