@@ -1,8 +1,0 @@
-How to run virtualenv (env/scripts/activate.ps1) on windows powershell:
-1) Navigate to dir
-2) RUN: PS C:\Users\Preston\web_scraping_with_python\scraper\python_web_scraper> 
-	set-executionpolicy remotesigned
-3) [Y] Yes ... : y [enter]
-4) RUN: PS C:\Users\Preston\web_scraping_with_python\scraper\python_web_scraper> 
-	.\env\scripts\activate.ps1
-5) (env) PS C:\Users\Preston\web_scraping_with_python\scraper\python_web_scraper>
