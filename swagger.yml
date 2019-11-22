@@ -14,11 +14,22 @@ basePath: "/api"
 paths:
   /products:
     get:
-      operationId: "products.read"
+      operationId: "products.read_all"
       tags:
         - "Products"
       summary: "The products data structure supported by the server application"
       description: "Read the list of products"
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of products to get from product
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering products
+          required: false
       responses:
         200:
           description: "Successful read products list operation"
@@ -32,3 +43,90 @@ paths:
                   type: "string"
                 timestamp:
                   type: "string"
+    post:
+      operationId: products.create
+      tags:
+        - products
+      summary: Create a product and add it to the products list
+      description: Create a new product in the products list
+      parameters:
+        - name: product
+          in: body
+          description: product to create
+          required: True
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+                description: First name of product to create
+              lname:
+                type: string
+                description: Last name of product to create
+      responses:
+        201:
+          description: Successfully created product in list
+
+  /products/{lname}:
+    get:
+      operationId: products.read_one
+      tags:
+        - products
+      summary: Read one product from the products list
+      description: Read one product from the products list
+      parameters:
+        - name: lname
+          in: path
+          description: Last name of the product to get from the list
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read product from products list operation
+          schema:
+            properties:
+              fname:
+                type: string
+              lname:
+                type: string
+              timestamp:
+                type: string
+    put:
+      operationId: products.update
+      tags:
+        - products
+      summary: Update a product in the products list
+      description: Update a product in the products list
+      parameters:
+        - name: lname
+          in: path
+          description: Last name of the product to update in the list
+          type: string
+          required: True
+        - name: product
+          in: body
+          schema:
+            type: object
+            properties:
+              fname:
+                type: string
+              lname:
+                type: string
+      responses:
+        200:
+          description: Successfully updated product in products list
+
+    delete:
+      operationId: products.delete
+      tags:
+        - products
+      summary: Delete a product from the products list
+      description: Delete a product
+      parameters:
+        - name: lname
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully deleted a product from products list
