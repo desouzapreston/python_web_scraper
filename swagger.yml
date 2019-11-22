@@ -37,12 +37,13 @@ paths:
             type: "array"
             items:
               properties:
-                fname:
+                title:
                   type: "string"
-                lname:
+                part_num:
                   type: "string"
                 timestamp:
                   type: "string"
+
     post:
       operationId: products.create
       tags:
@@ -57,17 +58,17 @@ paths:
           schema:
             type: object
             properties:
-              fname:
+              title:
                 type: string
-                description: First name of product to create
-              lname:
+                description: Title of Product to create
+              part_num:
                 type: string
-                description: Last name of product to create
+                description: Part Number of Product to create
       responses:
         201:
           description: Successfully created product in list
 
-  /products/{lname}:
+  /products/{part_num}:
     get:
       operationId: products.read_one
       tags:
@@ -75,9 +76,9 @@ paths:
       summary: Read one product from the products list
       description: Read one product from the products list
       parameters:
-        - name: lname
+        - name: part_num
           in: path
-          description: Last name of the product to get from the list
+          description: part_num of product to get from list
           type: string
           required: True
       responses:
@@ -85,12 +86,13 @@ paths:
           description: Successfully read product from products list operation
           schema:
             properties:
-              fname:
+              title:
                 type: string
-              lname:
+              part_num:
                 type: string
               timestamp:
                 type: string
+
     put:
       operationId: products.update
       tags:
@@ -98,9 +100,9 @@ paths:
       summary: Update a product in the products list
       description: Update a product in the products list
       parameters:
-        - name: lname
+        - name: part_num
           in: path
-          description: Last name of the product to update in the list
+          description: Part Number of Product to update
           type: string
           required: True
         - name: product
@@ -108,9 +110,9 @@ paths:
           schema:
             type: object
             properties:
-              fname:
+              title:
                 type: string
-              lname:
+              part_num:
                 type: string
       responses:
         200:
@@ -123,7 +125,7 @@ paths:
       summary: Delete a product from the products list
       description: Delete a product
       parameters:
-        - name: lname
+        - name: part_num
           in: path
           type: string
           required: True
