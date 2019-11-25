@@ -41,7 +41,9 @@ def read_one(part_num):
 
     return product
 
-def delete(part_num):
+# This bottom code is more for if I can expand the site to act like a shopping cart. 
+# It developed from the tutorial I was following 
+""" def delete(part_num):
     # Deletes product from product list PRODUCTS
     if part_num in PRODUCTS:
         del PRODUCTS[part_num]
@@ -89,3 +91,4 @@ def update(part_num, product):
             404, "product with part_num {part_num} not found".format(part_num=part_num)
         )
 
+ """
