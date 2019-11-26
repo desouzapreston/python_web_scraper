@@ -1,28 +1,43 @@
-<linkrel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
 <html>
-    <head>
-    </head>
-    <body>
-        <form action="landing_page.php" method="get">
-            <h1>Let's do some scraping >:)</h1>
-            <h3>Product Number: </h3>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="landing_page.css">
+    <script src="landing_page.js"></script>
+</head>
+
+<body>
+
+    <form action="landing_page.php" method="get">
+        <h1 class="center">Let's do some scraping, add in your search parameters.</h1>
+        <h5 class="center">Product Number:
             <input type="text" name="product_number">
-            <input type="submit">
+            <button type="submit">Add</button>
+        </h5>
 
-            <h3>Number of comparable search results: </h3>
-            <h5>Hint: The smaller the number, the faster the search</h5>
+        <h5 class="center">Number of comparable search results:
             <input type="text" name="results_amount">
-            <input type="submit">
+            <button type="submit">Add</button>
+            <!-- [Hint: The smaller the number, the faster the search] -->
+        </h5>
 
-            <h3>Min Price: </h3>
+        <h5 class="center">Min Price:
             <input type="text" name="min_price">
-            <input type="submit">
+            <button type="submit">Add</button>
+        </h5>
 
-            <h3>Max Price: </h3>
+        <h5 class="center">Max Price:
             <input type="text" name="max_price">
-            <input type="submit">
+            <button type="submit">Add</button>
+        </h5>
+    </form>
+    <div>
+        <ul>
+            <li>Blah<span class="close">x</span></li>
+        </ul>
 
-        </form>
+    </div>
 
-    </body>
+
+</body>
+
 </html>
