@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Connexion Python Web Server
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /products:
+    get:
+      operationId: "products.read_all"
+      tags:
+        - "products"
+      summary: "The products data structure supported by the server application"
+      description: "Read the list of products"
+      parameters:
+        - name: length
+          in: query
+          type: integer
+          description: Number of products to get from product
+          required: false
+        - name: offset
+          in: query
+          type: integer
+          description: Offset from beginning of list where to start gathering products
+          required: false
+      responses:
+        200:
+          description: "Successful read products list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                title:
+                  type: "string"
+                part_num:
+                  type: "string"
+                timestamp:
+                  type: "string"
+
+    # post:
+    #   operationId: products.create
+    #   tags:
+    #     - products
+    #   summary: Create a product and add it to the products list
+    #   description: Create a new product in the products list
+    #   parameters:
+    #     - name: product
+    #       in: body
+    #       description: product to create
+    #       required: True
+    #       schema:
+    #         type: object
+    #         properties:
+    #           title:
+    #             type: string
+    #             description: Title of Product to create
+    #           part_num:
+    #             type: string
+    #             description: Part Number of Product to create
+    #   responses:
+    #     201:
+    #       description: Successfully created product in list
+
+  /products/{part_num}:
+    get:
+      operationId: products.read_one
+      tags:
+        - products
+      summary: Read one product from the products list
+      description: Read one product from the products list
+      parameters:
+        - name: part_num
+          in: path
+          description: part_num of product to get from list
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully read product from products list operation
+          schema:
+            properties:
+              title:
+                type: string
+              part_num:
+                type: string
+              timestamp:
+                type: string
+
+    # put:
+    #   operationId: products.update
+    #   tags:
+    #     - products
+    #   summary: Update a product in the products list
+    #   description: Update a product in the products list
+    #   parameters:
+    #     - name: part_num
+    #       in: path
+    #       description: Part Number of Product to update
+    #       type: string
+    #       required: True
+    #     - name: product
+    #       in: body
+    #       schema:
+    #         type: object
+    #         properties:
+    #           title:
+    #             type: string
+    #           part_num:
+    #             type: string
+    #   responses:
+    #     200:
+    #       description: Successfully updated product in products list
+
+    # delete:
+    #   operationId: products.delete
+    #   tags:
+    #     - products
+    #   summary: Delete a product from the products list
+    #   description: Delete a product
+    #   parameters:
+    #     - name: part_num
+    #       in: path
+    #       type: string
+    #       required: True
+    #   responses:
+    #     200:
+    #       description: Successfully deleted a product from products list
