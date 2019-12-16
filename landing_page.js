@@ -8,12 +8,20 @@ for (i = 0; i < closebtns.length; i++) {
     });
 }
 
-/* Get all elements with class="generate" */
-var generatebtns = document.getElementsByClassName("generate");
-var j;
-/* Loop, show new filters, when clicked on */
-for (i = 0; i < generatebtns; i++) {
-    generatebtns[i].addEventListener("click", function() {
-        //TODO: use jQuery Append to generate new filter tag
-    })
-}
+// /* Generating Filters through add buttons */
+// $(document).ready(function() {
+//     $("#productnbr").click(function() {
+//         $("ul").append("<li>Generated Filter (prod #)<span class='close'>&times;</span></li>");
+//     });
+// });
+
+// // Wait I might not use this, but don't want to delete
+// /* Get all elements with class="generate" */
+// var generatebtns = document.getElementsByClassName("generate");
+// var j;
+// /* Loop, show new filters, when clicked on */
+// for (i = 0; i < generatebtns; i++) {
+//     generatebtns[i].addEventListener("click", function() {
+//         //TODO: use jQuery Append to generate new filter tag
+//     })
+// }
