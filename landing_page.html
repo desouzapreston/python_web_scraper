@@ -1,13 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" type="text/css" href="landing_page.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#productnbr").click(function() {
+            $("#prdnumber").click(function() {
                 $("ul").append("<li>Product Number (Generated Filter)<span class='close'>&times;</span></li>");
             });
+            //TODO: Make also for prdresults, prdmin, prdmax
         });
     </script>
 
@@ -15,27 +17,27 @@
 
 <body>
 
-    <form action="landing_page.php" method="get">
+    <form>
         <h1 class="center">Let's do some scraping, add in your search parameters.</h1>
         <h5 class="center">Product Number:
             <input type="text" name="product_number">
-            <button id="productnbr">Add</button>
+            <button id="prdnumber">Add</button>
         </h5>
 
         <h5 class="center">Number of comparable search results:
             <input type="text" name="results_amount">
-            <button type="submit">Add</button>
+            <button type="prdresults">Add</button>
             <!-- [Hint: The smaller the number, the faster the search] TODO: Optimize for larger sort/search -->
         </h5>
 
         <h5 class="center">Min Price:
             <input type="text" name="min_price">
-            <button type="submit">Add</button>
+            <button type="prdmin">Add</button>
         </h5>
 
         <h5 class="center">Max Price:
             <input type="text" name="max_price">
-            <button type="submit">Add</button>
+            <button type="prdmax">Add</button>
         </h5>
     </form>
     <div>

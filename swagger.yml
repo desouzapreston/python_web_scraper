@@ -44,29 +44,29 @@ paths:
                 timestamp:
                   type: "string"
 
-    # post:
-    #   operationId: products.create
-    #   tags:
-    #     - products
-    #   summary: Create a product and add it to the products list
-    #   description: Create a new product in the products list
-    #   parameters:
-    #     - name: product
-    #       in: body
-    #       description: product to create
-    #       required: True
-    #       schema:
-    #         type: object
-    #         properties:
-    #           title:
-    #             type: string
-    #             description: Title of Product to create
-    #           part_num:
-    #             type: string
-    #             description: Part Number of Product to create
-    #   responses:
-    #     201:
-    #       description: Successfully created product in list
+    post:
+      operationId: products.create
+      tags:
+        - products
+      summary: Create a product and add it to the products list
+      description: Create a new product in the products list
+      parameters:
+        - name: product
+          in: body
+          description: product to create
+          required: True
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Title of Product to create
+              part_num:
+                type: string
+                description: Part Number of Product to create
+      responses:
+        201:
+          description: Successfully created product in list
 
   /products/{part_num}:
     get:
@@ -93,42 +93,42 @@ paths:
               timestamp:
                 type: string
 
-    # put:
-    #   operationId: products.update
-    #   tags:
-    #     - products
-    #   summary: Update a product in the products list
-    #   description: Update a product in the products list
-    #   parameters:
-    #     - name: part_num
-    #       in: path
-    #       description: Part Number of Product to update
-    #       type: string
-    #       required: True
-    #     - name: product
-    #       in: body
-    #       schema:
-    #         type: object
-    #         properties:
-    #           title:
-    #             type: string
-    #           part_num:
-    #             type: string
-    #   responses:
-    #     200:
-    #       description: Successfully updated product in products list
+    put:
+      operationId: products.update
+      tags:
+        - products
+      summary: Update a product in the products list
+      description: Update a product in the products list
+      parameters:
+        - name: part_num
+          in: path
+          description: Part Number of Product to update
+          type: string
+          required: True
+        - name: product
+          in: body
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+              part_num:
+                type: string
+      responses:
+        200:
+          description: Successfully updated product in products list
 
-    # delete:
-    #   operationId: products.delete
-    #   tags:
-    #     - products
-    #   summary: Delete a product from the products list
-    #   description: Delete a product
-    #   parameters:
-    #     - name: part_num
-    #       in: path
-    #       type: string
-    #       required: True
-    #   responses:
-    #     200:
-    #       description: Successfully deleted a product from products list
+    delete:
+      operationId: products.delete
+      tags:
+        - products
+      summary: Delete a product from the products list
+      description: Delete a product
+      parameters:
+        - name: part_num
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Successfully deleted a product from products list
